@@ -23,8 +23,8 @@
             --color-secondary: #10B981;
             --color-secondary-soft: #10B98118;
             --color-bg: #FFFFFF;
-            --color-card: #F8FAFC;
-            --color-card-alt: #F1F5F9;
+            --color-card: #FFFFFF;
+            --color-card-alt: #F8FAFC;
             --color-text: #0F172A;
             --color-text-secondary: #475569;
             --color-border: #E2E8F0;
@@ -33,7 +33,7 @@
             --color-error: #DC2626;
             --font-family: 'Inter', system-ui, -apple-system, sans-serif;
             --max-width: 1120px;
-            --section-padding: 72px 0;
+            --section-padding: 80px 0;
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
@@ -81,10 +81,10 @@
             gap: 8px;
             background: var(--color-secondary);
             color: #fff;
-            padding: 12px 24px;
+            padding: 14px 24px;
             border-radius: var(--radius-sm);
             font-weight: 600;
-            font-size: .95rem;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
             transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
@@ -94,9 +94,9 @@
         .btn:hover { background: #0d9f6e; transform: translateY(-1px); box-shadow: var(--shadow-md); }
         .btn-secondary { background: #fff; color: var(--color-primary); box-shadow: inset 0 0 0 2px var(--color-primary); }
         .btn-secondary:hover { background: var(--color-primary-soft); }
-        .btn-ghost { background: transparent; color: var(--color-primary); box-shadow: none; padding: 12px 16px; }
+        .btn-ghost { background: transparent; color: var(--color-primary); box-shadow: none; padding: 14px 16px; }
         .btn-ghost:hover { background: var(--color-primary-soft); }
-        .btn-sm { padding: 8px 16px; font-size: .85rem; }
+        .btn-sm { padding: 10px 16px; font-size: .9rem; }
         nav {
             position: sticky;
             top: 0;
@@ -132,23 +132,24 @@
         .section-title {
             color: var(--color-primary);
             font-weight: 700;
-            font-size: 1.85rem;
-            margin-bottom: 16px;
+            font-size: clamp(1.55rem, 2.6vw, 2rem);
+            margin-bottom: 12px;
             letter-spacing: -0.02em;
         }
         .section-subtitle {
             color: var(--color-text-secondary);
             font-size: 1.05rem;
             max-width: 720px;
-            margin-bottom: 28px;
+            line-height: 1.6;
+            margin-bottom: 24px;
         }
-        .lead { color: var(--color-text-secondary); font-size: 1.05rem; max-width: 720px; }
-        .grid { display: grid; gap: 18px; }
+        .lead { color: var(--color-text-secondary); font-size: 1.05rem; max-width: 720px; line-height: 1.6; }
+        .grid { display: grid; gap: 24px; }
         .card {
             background: var(--color-card);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
-            padding: 22px;
+            padding: 24px;
             transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
             box-shadow: var(--shadow-sm);
         }
@@ -170,7 +171,7 @@
         .section { padding: var(--section-padding); }
         .section-alt { background: var(--color-card-alt); }
         .hero {
-            padding: 88px 0 96px;
+            padding: 96px 0 104px;
             overflow: hidden;
             background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
             border-bottom: 1px solid var(--color-border);
@@ -187,11 +188,11 @@
             font-size: .8rem;
             color: var(--color-secondary);
             background: var(--color-secondary-soft);
-            border: 1px solid rgba(16,185,129,.22);
-            padding: 6px 12px;
+            border: 1px solid rgba(16,185,129,.28);
+            padding: 8px 14px;
             border-radius: 999px;
-            margin-bottom: 16px;
-            letter-spacing: .02em;
+            margin-bottom: 18px;
+            letter-spacing: .04em;
             text-transform: uppercase;
         }
         .hero-copy h1 {
@@ -200,15 +201,15 @@
             font-weight: 700;
             color: var(--color-primary);
             letter-spacing: -0.03em;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
         .hero-copy .lead {
             font-size: 1.15rem;
             color: var(--color-text-secondary);
-            margin-bottom: 26px;
+            margin-bottom: 28px;
             line-height: 1.6;
         }
-        .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        .cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
         .hero-visual {
             border-radius: var(--radius-lg);
             border: 1px solid var(--color-border);
@@ -217,54 +218,54 @@
             overflow: hidden;
         }
         .hero-visual-bar {
-            height: 12px;
+            height: 14px;
             background: #F1F5F9;
             border-bottom: 1px solid var(--color-border);
             display: flex;
-            gap: 6px;
-            padding: 10px 14px;
+            gap: 8px;
+            padding: 12px 16px;
             align-items: center;
         }
         .hero-visual-bar span { width: 12px; height: 12px; border-radius: 50%; background: #E2E8F0; }
         .hero-visual-body {
-            padding: 18px;
+            padding: 20px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 14px;
         }
-        .hero-visual .card { padding: 16px; }
+        .hero-visual .card { padding: 18px; background: #FFFFFF; }
         .hero-visual .skeleton { height: 10px; background: #E2E8F0; border-radius: 999px; margin-top: 10px; width: 80%; }
         .metrics {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 22px;
+            gap: 24px;
+            margin-top: 28px;
         }
         .metrics .metric { text-align: center; }
         .metrics .metric-value {
-            font-size: 2.1rem;
+            font-size: 2.4rem;
             font-weight: 700;
             color: var(--color-primary);
             letter-spacing: -0.03em;
         }
-        .metrics .metric-label { color: var(--color-text-secondary); font-size: .95rem; margin-top: 4px; }
+        .metrics .metric-label { color: var(--color-text-secondary); font-size: .95rem; margin-top: 6px; }
         .timeline {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 14px;
+            gap: 16px;
         }
         .timeline .step {
             text-align: center;
             background: #fff;
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
-            padding: 18px 12px;
+            padding: 20px 12px;
             transition: transform .15s ease, box-shadow .2s ease;
             box-shadow: var(--shadow-sm);
         }
         .step-num {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: var(--color-primary);
             color: #fff;
@@ -302,10 +303,16 @@
             background: #fff;
         }
         .footer-links { display: inline-flex; gap: 18px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px; }
+        .section-separator {
+            height: 1px;
+            background: var(--color-border);
+            border: none;
+            margin: 0;
+        }
         @media (max-width: 900px) {
             .hero-wrap { grid-template-columns: 1fr; }
-            .hero { padding: 64px 0 72px; }
-            .metrics { grid-template-columns: 1fr; }
+            .hero { padding: 72px 0 80px; }
+            .metrics { grid-template-columns: 1fr; gap: 16px; }
             .timeline { grid-template-columns: 1fr 1fr; }
             .founder-grid { grid-template-columns: 1fr; }
         }
@@ -321,6 +328,8 @@
                 border-bottom: 1px solid var(--color-border);
                 gap: 12px;
                 box-shadow: var(--shadow-md);
+                max-height: calc(100vh - 64px);
+                overflow-y: auto;
             }
             .nav-links.open { display: flex; }
             .menu-toggle { display: block; }
@@ -374,12 +383,16 @@
                 </div>
             </section>
 
+            <hr class="section-separator">
+
             <section id="company" class="section">
                 <div class="container">
                     <h2 class="section-title">Company</h2>
                     <p class="section-subtitle">Anga Performance is an AI software company building practical workflow automation for African businesses. We start with real estate because it has the highest operational friction and the clearest ROI.</p>
                 </div>
             </section>
+
+            <hr class="section-separator">
 
             <section id="products" class="section section-alt">
                 <div class="container">
@@ -400,25 +413,29 @@
                 </div>
             </section>
 
+            <hr class="section-separator">
+
             <section id="problem" class="section">
                 <div class="container">
                     <h2 class="section-title">The Problem</h2>
                     <p class="section-subtitle">High-friction workflows cost landlords time and money.</p>
                     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                        <div class="card"><strong>Manual rent tracking</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Leads to missed payments and unclear records.</p></div>
-                        <div class="card"><strong>Fragmented communication</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Tenant messages scattered across WhatsApp, SMS, and email.</p></div>
-                        <div class="card"><strong>Paper receipts</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">No digital audit trail for payments or leases.</p></div>
-                        <div class="card"><strong>Spreadsheet dependence</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Error-prone and hard to scale across units.</p></div>
-                        <div class="card"><strong>Maintenance delays</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Requests get lost, contractors are delayed, tenants are unhappy.</p></div>
+                        <div class="card"><strong>Manual rent tracking</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Leads to missed payments and unclear records.</p></div>
+                        <div class="card"><strong>Fragmented communication</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Tenant messages scattered across WhatsApp, SMS, and email.</p></div>
+                        <div class="card"><strong>Paper receipts</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">No digital audit trail for payments or leases.</p></div>
+                        <div class="card"><strong>Spreadsheet dependence</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Error-prone and hard to scale across units.</p></div>
+                        <div class="card"><strong>Maintenance delays</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Requests get lost, contractors are delayed, tenants are unhappy.</p></div>
                     </div>
                 </div>
             </section>
+
+            <hr class="section-separator">
 
             <section id="solution" class="section section-alt">
                 <div class="container">
                     <h2 class="section-title">Solution</h2>
                     <p class="section-subtitle">RealEstOs replaces scattered spreadsheets, WhatsApp threads, and paper trails with one intelligent dashboard. Automated rent collection, smart reminders, and structured maintenance workflows help landlords recover time, reduce missed payments, and keep complete records.</p>
-                    <div class="metrics" style="margin-top:22px;">
+                    <div class="metrics">
                         <div class="metric card"><div class="metric-value">40%</div><div class="metric-label">Reduction in admin time</div></div>
                         <div class="metric card"><div class="metric-value">2x</div><div class="metric-label">Faster payment reconciliation</div></div>
                         <div class="metric card"><div class="metric-value">100%</div><div class="metric-label">Audit-ready records</div></div>
@@ -426,36 +443,42 @@
                 </div>
             </section>
 
+            <hr class="section-separator">
+
             <section id="ai" class="section">
                 <div class="container">
                     <h2 class="section-title">How AI Works</h2>
                     <p class="section-subtitle">Powered by Gemini. RealEstOs handles the busywork that wastes hours every week.</p>
                     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top:4px;">
-                        <div class="card"><strong>Summarizes conversations</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Understands tenant messages automatically.</p></div>
-                        <div class="card"><strong>Drafts reminders</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Generates polite, contextual payment follow-ups.</p></div>
-                        <div class="card"><strong>Reads receipts</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Extracts payment details and logs them.</p></div>
-                        <div class="card"><strong>Categorizes maintenance</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Tags requests by type and urgency.</p></div>
-                        <div class="card"><strong>Generates reports</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Produces cashflow and occupancy summaries.</p></div>
+                        <div class="card"><strong>Summarizes conversations</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Understands tenant messages automatically.</p></div>
+                        <div class="card"><strong>Drafts reminders</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Generates polite, contextual payment follow-ups.</p></div>
+                        <div class="card"><strong>Reads receipts</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Extracts payment details and logs them.</p></div>
+                        <div class="card"><strong>Categorizes maintenance</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Tags requests by type and urgency.</p></div>
+                        <div class="card"><strong>Generates reports</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Produces cashflow and occupancy summaries.</p></div>
                     </div>
                 </div>
             </section>
+
+            <hr class="section-separator">
 
             <section id="features" class="section section-alt">
                 <div class="container">
                     <h2 class="section-title">Features</h2>
                     <p class="section-subtitle">Everything you need to run a modern property operation.</p>
                     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                        <div class="card"><div class="icon-box">T</div><strong>Tenant Management</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Centralized profiles and lease history.</p></div>
-                        <div class="card"><div class="icon-box">R</div><strong>Rent Tracking</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Automated payment links and schedules.</p></div>
-                        <div class="card"><div class="icon-box">P</div><strong>Payment Reconciliation</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Match payments to units instantly.</p></div>
-                        <div class="card"><div class="icon-box">M</div><strong>Maintenance Workflow</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Photo requests, contractor alerts, status tracking.</p></div>
-                        <div class="card"><div class="icon-box">C</div><strong>Unified Chat</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Tenant conversations in one inbox.</p></div>
-                        <div class="card"><div class="icon-box">D</div><strong>Cash-flow Dashboard</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Real-time income and expense view.</p></div>
-                        <div class="card"><div class="icon-box">📄</div><strong>Receipts</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">PDF generation for payments and leases.</p></div>
-                        <div class="card"><div class="icon-box">📊</div><strong>Audit History</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Complete, searchable activity log.</p></div>
+                        <div class="card"><div class="icon-box">T</div><strong>Tenant Management</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Centralized profiles and lease history.</p></div>
+                        <div class="card"><div class="icon-box">R</div><strong>Rent Tracking</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Automated payment links and schedules.</p></div>
+                        <div class="card"><div class="icon-box">P</div><strong>Payment Reconciliation</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Match payments to units instantly.</p></div>
+                        <div class="card"><div class="icon-box">M</div><strong>Maintenance Workflow</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Photo requests, contractor alerts, status tracking.</p></div>
+                        <div class="card"><div class="icon-box">C</div><strong>Unified Chat</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Tenant conversations in one inbox.</p></div>
+                        <div class="card"><div class="icon-box">D</div><strong>Cash-flow Dashboard</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Real-time income and expense view.</p></div>
+                        <div class="card"><div class="icon-box">📄</div><strong>Receipts</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">PDF generation for payments and leases.</p></div>
+                        <div class="card"><div class="icon-box">📊</div><strong>Audit History</strong><p class="lead" style="font-size:.95rem; margin-top:8px;">Complete, searchable activity log.</p></div>
                     </div>
                 </div>
             </section>
+
+            <hr class="section-separator">
 
             <section id="technology" class="section">
                 <div class="container">
@@ -464,12 +487,16 @@
                 </div>
             </section>
 
+            <hr class="section-separator">
+
             <section id="vision" class="section section-alt">
                 <div class="container">
                     <h2 class="section-title">Vision</h2>
                     <p class="section-subtitle">Anga Performance aims to become the operating system powering African businesses through intelligent workflow automation — starting with real estate and expanding across industries.</p>
                 </div>
             </section>
+
+            <hr class="section-separator">
 
             <section id="roadmap" class="section">
                 <div class="container">
@@ -485,6 +512,8 @@
                 </div>
             </section>
 
+            <hr class="section-separator">
+
             <section id="founder" class="section section-alt">
                 <div class="container">
                     <h2 class="section-title">Founder</h2>
@@ -499,6 +528,8 @@
                     </div>
                 </div>
             </section>
+
+            <hr class="section-separator">
 
             <section id="contact" class="section">
                 <div class="container">
