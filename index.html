@@ -19,18 +19,27 @@
     <style>
         :root {
             --color-primary: #1E3A8A;
+            --color-primary-soft: #1E3A8A14;
             --color-secondary: #10B981;
+            --color-secondary-soft: #10B98118;
             --color-bg: #FFFFFF;
             --color-card: #F8FAFC;
-            --color-text: #111827;
-            --color-text-secondary: #6B7280;
-            --color-border: #E5E7EB;
+            --color-card-alt: #F1F5F9;
+            --color-text: #0F172A;
+            --color-text-secondary: #475569;
+            --color-border: #E2E8F0;
             --color-success: #16A34A;
             --color-warning: #F59E0B;
             --color-error: #DC2626;
             --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            --max-width: 1100px;
-            --section-padding: 64px 0;
+            --max-width: 1120px;
+            --section-padding: 72px 0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,.06);
+            --shadow-lg: 0 20px 50px rgba(0,0,0,.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -40,6 +49,7 @@
             color: var(--color-text);
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
         .skip-link {
             position: absolute;
@@ -72,25 +82,28 @@
             background: var(--color-secondary);
             color: #fff;
             padding: 12px 24px;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             font-weight: 600;
             font-size: .95rem;
             border: none;
             cursor: pointer;
-            transition: transform .15s ease, background .2s ease;
+            transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
             text-decoration: none;
+            box-shadow: var(--shadow-sm);
         }
-        .btn:hover { background: #0d9f6e; transform: translateY(-1px); }
-        .btn-secondary { background: transparent; color: var(--color-primary); box-shadow: inset 0 0 0 2px var(--color-primary); }
-        .btn-secondary:hover { background: rgba(30,58,138,.06); }
+        .btn:hover { background: #0d9f6e; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+        .btn-secondary { background: #fff; color: var(--color-primary); box-shadow: inset 0 0 0 2px var(--color-primary); }
+        .btn-secondary:hover { background: var(--color-primary-soft); }
         .btn-ghost { background: transparent; color: var(--color-primary); box-shadow: none; padding: 12px 16px; }
-        .btn-ghost:hover { background: rgba(30,58,138,.06); }
+        .btn-ghost:hover { background: var(--color-primary-soft); }
+        .btn-sm { padding: 8px 16px; font-size: .85rem; }
         nav {
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(255,255,255,.85);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,.82);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
             border-bottom: 1px solid var(--color-border);
         }
         nav .container {
@@ -100,9 +113,9 @@
             height: 64px;
             position: relative;
         }
-        .logo { font-weight: 700; font-size: 1.1rem; color: var(--color-primary); letter-spacing: -.02em; }
-        .nav-links { display: flex; gap: 22px; list-style: none; }
-        .nav-links a { color: var(--color-text); font-weight: 500; font-size: .95rem; }
+        .logo { font-weight: 700; font-size: 1.15rem; color: var(--color-primary); letter-spacing: -0.03em; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a { color: var(--color-text-secondary); font-weight: 500; font-size: .95rem; transition: color .2s ease; }
         .nav-links a:hover { color: var(--color-primary); }
         .menu-toggle {
             display: none;
@@ -112,79 +125,95 @@
             color: var(--color-text);
             cursor: pointer;
             line-height: 1;
+            padding: 4px;
+            border-radius: 6px;
         }
+        .menu-toggle:hover { background: var(--color-card-alt); }
         .section-title {
             color: var(--color-primary);
             font-weight: 700;
-            font-size: 1.75rem;
-            margin-bottom: 18px;
-            letter-spacing: -0.01em;
+            font-size: 1.85rem;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .section-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1.05rem;
+            max-width: 720px;
+            margin-bottom: 28px;
         }
         .lead { color: var(--color-text-secondary); font-size: 1.05rem; max-width: 720px; }
         .grid { display: grid; gap: 18px; }
         .card {
             background: var(--color-card);
             border: 1px solid var(--color-border);
-            border-radius: 12px;
+            border-radius: var(--radius-md);
             padding: 22px;
-            transition: transform .2s ease, box-shadow .2s ease;
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+            box-shadow: var(--shadow-sm);
         }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,.06); }
+        .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #CBD5E1; }
         .icon-box {
             width: 40px;
             height: 40px;
-            border-radius: 8px;
-            background: rgba(16,185,129,.12);
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary-soft);
             color: var(--color-secondary);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .page-wrap { display: flex; flex-direction: column; min-height: 100vh; }
         main { flex: 1; }
         .section { padding: var(--section-padding); }
-        .section-alt { background: var(--color-card); }
+        .section-alt { background: var(--color-card-alt); }
         .hero {
-            padding: 100px 0 110px;
+            padding: 88px 0 96px;
             overflow: hidden;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+            border-bottom: 1px solid var(--color-border);
         }
         .hero-wrap {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 40px;
-            align-items: start;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px;
+            align-items: center;
         }
         .hero-copy .eyebrow {
             display: inline-block;
             font-weight: 600;
-            font-size: .85rem;
+            font-size: .8rem;
             color: var(--color-secondary);
-            background: rgba(16,185,129,.1);
+            background: var(--color-secondary-soft);
             border: 1px solid rgba(16,185,129,.22);
-            padding: 6px 10px;
+            padding: 6px 12px;
             border-radius: 999px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+            letter-spacing: .02em;
+            text-transform: uppercase;
         }
         .hero-copy h1 {
-            font-size: clamp(2.2rem, 4vw, 3.4rem);
-            line-height: 1.1;
+            font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+            line-height: 1.08;
             font-weight: 700;
             color: var(--color-primary);
-            letter-spacing: -0.02em;
-            margin-bottom: 14px;
+            letter-spacing: -0.03em;
+            margin-bottom: 18px;
         }
         .hero-copy .lead {
-            font-size: 1.2rem;
-            margin-bottom: 22px;
+            font-size: 1.15rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 26px;
+            line-height: 1.6;
         }
-        .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
         .hero-visual {
-            border-radius: 16px;
+            border-radius: var(--radius-lg);
             border: 1px solid var(--color-border);
             background: #fff;
-            box-shadow: 0 20px 50px rgba(0,0,0,.08);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
         }
         .hero-visual-bar {
@@ -193,47 +222,49 @@
             border-bottom: 1px solid var(--color-border);
             display: flex;
             gap: 6px;
-            padding: 8px 12px;
+            padding: 10px 14px;
+            align-items: center;
         }
-        .hero-visual-bar span {
-            width: 12px; height: 12px; border-radius: 50%; background: #E5E7EB;
-        }
+        .hero-visual-bar span { width: 12px; height: 12px; border-radius: 50%; background: #E2E8F0; }
         .hero-visual-body {
             padding: 18px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 14px;
         }
-        .hero-visual .card { padding: 14px; }
-        .hero-visual .skeleton { height: 10px; background: #E5E7EB; border-radius: 999px; margin-top: 8px; }
+        .hero-visual .card { padding: 16px; }
+        .hero-visual .skeleton { height: 10px; background: #E2E8F0; border-radius: 999px; margin-top: 10px; width: 80%; }
         .metrics {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
+            margin-top: 22px;
         }
         .metrics .metric { text-align: center; }
         .metrics .metric-value {
-            font-size: 2rem;
+            font-size: 2.1rem;
             font-weight: 700;
             color: var(--color-primary);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
         }
         .metrics .metric-label { color: var(--color-text-secondary); font-size: .95rem; margin-top: 4px; }
         .timeline {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
+            gap: 14px;
         }
         .timeline .step {
             text-align: center;
             background: #fff;
             border: 1px solid var(--color-border);
-            border-radius: 10px;
-            padding: 14px 10px;
+            border-radius: var(--radius-md);
+            padding: 18px 12px;
+            transition: transform .15s ease, box-shadow .2s ease;
+            box-shadow: var(--shadow-sm);
         }
         .step-num {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: var(--color-primary);
             color: #fff;
@@ -242,18 +273,18 @@
             justify-content: center;
             font-weight: 700;
             font-size: .8rem;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .founder-grid {
             display: grid;
             grid-template-columns: 96px 1fr;
-            gap: 22px;
+            gap: 24px;
             align-items: start;
         }
         .founder-avatar {
             width: 96px;
             height: 96px;
-            border-radius: 12px;
+            border-radius: var(--radius-md);
             background: var(--color-primary);
             color: #fff;
             display: inline-flex;
@@ -261,16 +292,19 @@
             justify-content: center;
             font-weight: 700;
             font-size: 1.1rem;
+            box-shadow: var(--shadow-md);
         }
         footer {
             border-top: 1px solid var(--color-border);
             padding: 28px 0;
             color: var(--color-text-secondary);
             font-size: .9rem;
+            background: #fff;
         }
+        .footer-links { display: inline-flex; gap: 18px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px; }
         @media (max-width: 900px) {
             .hero-wrap { grid-template-columns: 1fr; }
-            .hero { padding: 72px 0 80px; }
+            .hero { padding: 64px 0 72px; }
             .metrics { grid-template-columns: 1fr; }
             .timeline { grid-template-columns: 1fr 1fr; }
             .founder-grid { grid-template-columns: 1fr; }
@@ -286,9 +320,12 @@
                 padding: 16px;
                 border-bottom: 1px solid var(--color-border);
                 gap: 12px;
+                box-shadow: var(--shadow-md);
             }
             .nav-links.open { display: flex; }
             .menu-toggle { display: block; }
+            .section-title { font-size: 1.55rem; }
+            .hero-copy h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -321,7 +358,7 @@
                             <div class="cta-row">
                                 <a class="btn" href="#contact">Get Early Access</a>
                                 <a class="btn btn-secondary" href="#products">See What It Does</a>
-                                <a class="btn btn-ghost" href="https://github.com/Jeff-Thom" target="_blank" rel="noopener">GitHub</a>
+                                <a class="btn btn-ghost btn-sm" href="https://github.com/Jeff-Thom" target="_blank" rel="noopener">GitHub</a>
                             </div>
                         </div>
                         <div class="hero-visual" aria-hidden="true">
@@ -340,22 +377,23 @@
             <section id="company" class="section">
                 <div class="container">
                     <h2 class="section-title">Company</h2>
-                    <p class="lead">Anga Performance is an AI software company building practical workflow automation for African businesses. We start with real estate because it has the highest operational friction and the clearest ROI.</p>
+                    <p class="section-subtitle">Anga Performance is an AI software company building practical workflow automation for African businesses. We start with real estate because it has the highest operational friction and the clearest ROI.</p>
                 </div>
             </section>
 
             <section id="products" class="section section-alt">
                 <div class="container">
                     <h2 class="section-title">Products</h2>
+                    <p class="section-subtitle">Flagship platform and future operating systems.</p>
                     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
                         <article class="card">
                             <div class="icon-box">R</div>
-                            <h3 style="color:var(--color-primary); margin-bottom:6px;">RealEstOs <span style="font-weight:400;color:var(--color-text-secondary);font-size:.85rem;">Flagship</span></h3>
+                            <h3 style="color:var(--color-primary); margin-bottom:8px; font-size:1.05rem;">RealEstOs <span style="font-weight:400;color:var(--color-text-secondary);font-size:.85rem;">Flagship</span></h3>
                             <p class="lead" style="font-size:.95rem;">AI-powered property management operating system. Automates rent collection, maintenance ticketing, and tenant communication.</p>
                         </article>
                         <article class="card">
                             <div class="icon-box">+</div>
-                            <h3 style="color:var(--color-primary); margin-bottom:6px;">More Coming</h3>
+                            <h3 style="color:var(--color-primary); margin-bottom:8px; font-size:1.05rem;">More Coming</h3>
                             <p class="lead" style="font-size:.95rem;">Anga Performance is developing additional AI operating systems for other high-friction African industries.</p>
                         </article>
                     </div>
@@ -365,12 +403,13 @@
             <section id="problem" class="section">
                 <div class="container">
                     <h2 class="section-title">The Problem</h2>
+                    <p class="section-subtitle">High-friction workflows cost landlords time and money.</p>
                     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                        <div class="card"><strong>Manual rent tracking</strong><p class="lead" style="font-size:.9rem;">Leads to missed payments and unclear records.</p></div>
-                        <div class="card"><strong>Fragmented communication</strong><p class="lead" style="font-size:.9rem;">Tenant messages scattered across WhatsApp, SMS, and email.</p></div>
-                        <div class="card"><strong>Paper receipts</strong><p class="lead" style="font-size:.9rem;">No digital audit trail for payments or leases.</p></div>
-                        <div class="card"><strong>Spreadsheet dependence</strong><p class="lead" style="font-size:.9rem;">Error-prone and hard to scale across units.</p></div>
-                        <div class="card"><strong>Maintenance delays</strong><p class="lead" style="font-size:.9rem;">Requests get lost, contractors are delayed, tenants are unhappy.</p></div>
+                        <div class="card"><strong>Manual rent tracking</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Leads to missed payments and unclear records.</p></div>
+                        <div class="card"><strong>Fragmented communication</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Tenant messages scattered across WhatsApp, SMS, and email.</p></div>
+                        <div class="card"><strong>Paper receipts</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">No digital audit trail for payments or leases.</p></div>
+                        <div class="card"><strong>Spreadsheet dependence</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Error-prone and hard to scale across units.</p></div>
+                        <div class="card"><strong>Maintenance delays</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Requests get lost, contractors are delayed, tenants are unhappy.</p></div>
                     </div>
                 </div>
             </section>
@@ -378,7 +417,7 @@
             <section id="solution" class="section section-alt">
                 <div class="container">
                     <h2 class="section-title">Solution</h2>
-                    <p class="lead">RealEstOs replaces scattered spreadsheets, WhatsApp threads, and paper trails with one intelligent dashboard. Automated rent collection, smart reminders, and structured maintenance workflows help landlords recover time, reduce missed payments, and keep complete records.</p>
+                    <p class="section-subtitle">RealEstOs replaces scattered spreadsheets, WhatsApp threads, and paper trails with one intelligent dashboard. Automated rent collection, smart reminders, and structured maintenance workflows help landlords recover time, reduce missed payments, and keep complete records.</p>
                     <div class="metrics" style="margin-top:22px;">
                         <div class="metric card"><div class="metric-value">40%</div><div class="metric-label">Reduction in admin time</div></div>
                         <div class="metric card"><div class="metric-value">2x</div><div class="metric-label">Faster payment reconciliation</div></div>
@@ -390,13 +429,13 @@
             <section id="ai" class="section">
                 <div class="container">
                     <h2 class="section-title">How AI Works</h2>
-                    <p class="lead">Powered by Gemini. RealEstOs handles the busywork that wastes hours every week.</p>
-                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top:18px;">
-                        <div class="card"><strong>Summarizes conversations</strong><p class="lead" style="font-size:.9rem;">Understands tenant messages automatically.</p></div>
-                        <div class="card"><strong>Drafts reminders</strong><p class="lead" style="font-size:.9rem;">Generates polite, contextual payment follow-ups.</p></div>
-                        <div class="card"><strong>Reads receipts</strong><p class="lead" style="font-size:.9rem;">Extracts payment details and logs them.</p></div>
-                        <div class="card"><strong>Categorizes maintenance</strong><p class="lead" style="font-size:.9rem;">Tags requests by type and urgency.</p></div>
-                        <div class="card"><strong>Generates reports</strong><p class="lead" style="font-size:.9rem;">Produces cashflow and occupancy summaries.</p></div>
+                    <p class="section-subtitle">Powered by Gemini. RealEstOs handles the busywork that wastes hours every week.</p>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top:4px;">
+                        <div class="card"><strong>Summarizes conversations</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Understands tenant messages automatically.</p></div>
+                        <div class="card"><strong>Drafts reminders</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Generates polite, contextual payment follow-ups.</p></div>
+                        <div class="card"><strong>Reads receipts</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Extracts payment details and logs them.</p></div>
+                        <div class="card"><strong>Categorizes maintenance</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Tags requests by type and urgency.</p></div>
+                        <div class="card"><strong>Generates reports</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Produces cashflow and occupancy summaries.</p></div>
                     </div>
                 </div>
             </section>
@@ -404,15 +443,16 @@
             <section id="features" class="section section-alt">
                 <div class="container">
                     <h2 class="section-title">Features</h2>
+                    <p class="section-subtitle">Everything you need to run a modern property operation.</p>
                     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                        <div class="card"><div class="icon-box">T</div><strong>Tenant Management</strong><p class="lead" style="font-size:.9rem;">Centralized profiles and lease history.</p></div>
-                        <div class="card"><div class="icon-box">R</div><strong>Rent Tracking</strong><p class="lead" style="font-size:.9rem;">Automated payment links and schedules.</p></div>
-                        <div class="card"><div class="icon-box">P</div><strong>Payment Reconciliation</strong><p class="lead" style="font-size:.9rem;">Match payments to units instantly.</p></div>
-                        <div class="card"><div class="icon-box">M</div><strong>Maintenance Workflow</strong><p class="lead" style="font-size:.9rem;">Photo requests, contractor alerts, status tracking.</p></div>
-                        <div class="card"><div class="icon-box">C</div><strong>Unified Chat</strong><p class="lead" style="font-size:.9rem;">Tenant conversations in one inbox.</p></div>
-                        <div class="card"><div class="icon-box">D</div><strong>Cash-flow Dashboard</strong><p class="lead" style="font-size:.9rem;">Real-time income and expense view.</p></div>
-                        <div class="card"><div class="icon-box">📄</div><strong>Receipts</strong><p class="lead" style="font-size:.9rem;">PDF generation for payments and leases.</p></div>
-                        <div class="card"><div class="icon-box">📊</div><strong>Audit History</strong><p class="lead" style="font-size:.9rem;">Complete, searchable activity log.</p></div>
+                        <div class="card"><div class="icon-box">T</div><strong>Tenant Management</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Centralized profiles and lease history.</p></div>
+                        <div class="card"><div class="icon-box">R</div><strong>Rent Tracking</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Automated payment links and schedules.</p></div>
+                        <div class="card"><div class="icon-box">P</div><strong>Payment Reconciliation</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Match payments to units instantly.</p></div>
+                        <div class="card"><div class="icon-box">M</div><strong>Maintenance Workflow</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Photo requests, contractor alerts, status tracking.</p></div>
+                        <div class="card"><div class="icon-box">C</div><strong>Unified Chat</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Tenant conversations in one inbox.</p></div>
+                        <div class="card"><div class="icon-box">D</div><strong>Cash-flow Dashboard</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Real-time income and expense view.</p></div>
+                        <div class="card"><div class="icon-box">📄</div><strong>Receipts</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">PDF generation for payments and leases.</p></div>
+                        <div class="card"><div class="icon-box">📊</div><strong>Audit History</strong><p class="lead" style="font-size:.9rem; margin-top:6px;">Complete, searchable activity log.</p></div>
                     </div>
                 </div>
             </section>
@@ -420,21 +460,22 @@
             <section id="technology" class="section">
                 <div class="container">
                     <h2 class="section-title">Technology</h2>
-                    <p class="lead">RealEstOs is built on a modern, cloud-native architecture designed for reliability at scale. Mobile-first design, secure data handling, and API-ready backends ensure the platform grows with your portfolio — from a single unit to thousands.</p>
+                    <p class="section-subtitle">RealEstOs is built on a modern, cloud-native architecture designed for reliability at scale. Mobile-first design, secure data handling, and API-ready backends ensure the platform grows with your portfolio — from a single unit to thousands.</p>
                 </div>
             </section>
 
             <section id="vision" class="section section-alt">
                 <div class="container">
                     <h2 class="section-title">Vision</h2>
-                    <p class="lead">Anga Performance aims to become the operating system powering African businesses through intelligent workflow automation — starting with real estate and expanding across industries.</p>
+                    <p class="section-subtitle">Anga Performance aims to become the operating system powering African businesses through intelligent workflow automation — starting with real estate and expanding across industries.</p>
                 </div>
             </section>
 
             <section id="roadmap" class="section">
                 <div class="container">
                     <h2 class="section-title">Roadmap</h2>
-                    <div class="timeline">
+                    <p class="section-subtitle">From prototype to continental expansion.</p>
+                    <div class="timeline" style="margin-top:4px;">
                         <div class="step"><div class="step-num">1</div><strong>Prototype</strong></div>
                         <div class="step"><div class="step-num">2</div><strong>Pilot</strong></div>
                         <div class="step"><div class="step-num">3</div><strong>Google AI Programs</strong></div>
@@ -450,9 +491,9 @@
                     <div class="founder-grid">
                         <div class="founder-avatar" aria-label="Founder avatar">JT</div>
                         <div>
-                            <p class="lead" style="font-weight:600; margin-bottom:6px;">JeffThom Otieno</p>
+                            <p class="lead" style="font-weight:600; margin-bottom:8px; font-size:1.05rem; color:var(--color-text);">JeffThom Otieno</p>
                             <p class="lead">Software engineer and product builder creating AI operating systems that solve real operational challenges in African industries.</p>
-                            <p class="lead" style="margin-top:8px;"><strong>Current focus:</strong> RealEstOs</p>
+                            <p class="lead" style="margin-top:10px;"><strong>Current focus:</strong> RealEstOs</p>
                             <p class="lead"><strong>Future focus:</strong> Multiple AI operating systems.</p>
                         </div>
                     </div>
@@ -462,8 +503,9 @@
             <section id="contact" class="section">
                 <div class="container">
                     <h2 class="section-title">Contact</h2>
-                    <p class="lead">Email: <a href="mailto:info@anga.performance.ke">info@anga.performance.ke</a><br>Based in Nairobi, Kenya</p>
-                    <div style="margin-top:14px;">
+                    <p class="section-subtitle">Based in Nairobi, Kenya.</p>
+                    <p class="lead" style="font-size:1.05rem;">Email: <a href="mailto:info@anga.performance.ke">info@anga.performance.ke</a></p>
+                    <div style="margin-top:18px;">
                         <a class="btn" href="mailto:info@anga.performance.ke">Get Early Access</a>
                     </div>
                 </div>
@@ -472,7 +514,7 @@
 
         <footer>
             <div class="container">
-                <div style="display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-bottom:10px;">
+                <div class="footer-links">
                     <a href="#company">Company</a>
                     <a href="#products">Products</a>
                     <a href="#contact">Contact</a>
