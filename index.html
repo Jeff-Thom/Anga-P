@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anga Performance – AI Operating Systems for Africa | RealEstOs</title>
     <meta name="description" content="Anga Performance builds AI operating systems for African industries. RealEstOs is our flagship AI-powered property management platform.">
+    <meta name="theme-color" content="#1E3A8A">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%231E3A8A'>A</text></svg>">
     <meta property="og:title" content="Anga Performance – AI Operating Systems for Africa">
-    <meta property="og:description" content="RealEstOs is our flagship AI-powered property management platform helping landlords automate rent, maintenance, and tenant communication.">
+    <meta property="og:description" content="RealEstOs flagship property management AI helps landlords automate rent, maintenance, and tenant communication.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Anga Performance – AI Operating Systems for Africa">
-    <meta name="twitter:description" content="RealEstOs is our flagship AI-powered property management platform.">
+    <meta name="twitter:description" content="RealEstOs flagship property management AI platform.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -28,7 +30,7 @@
             --color-error: #DC2626;
             --font-family: 'Inter', system-ui, -apple-system, sans-serif;
             --max-width: 1100px;
-            --section-padding: 56px 0;
+            --section-padding: 64px 0;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -39,220 +41,459 @@
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
         }
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-link:focus {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            width: auto;
+            height: auto;
+            padding: 10px 14px;
+            background: #000;
+            color: #fff;
+            z-index: 100;
+            border-radius: 6px;
+        }
         .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
         a { color: var(--color-secondary); text-decoration: none; transition: color .2s ease; }
         a:hover { color: #0d9f6e; }
         .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            background: var(--color-secondary); color: #fff;
-            padding: 10px 22px; border-radius: 6px; font-weight: 600; font-size: .95rem;
-            border: none; cursor: pointer; transition: transform .15s ease, background .2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--color-secondary);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: .95rem;
+            border: none;
+            cursor: pointer;
+            transition: transform .15s ease, background .2s ease;
+            text-decoration: none;
         }
         .btn:hover { background: #0d9f6e; transform: translateY(-1px); }
         .btn-secondary { background: transparent; color: var(--color-primary); box-shadow: inset 0 0 0 2px var(--color-primary); }
         .btn-secondary:hover { background: rgba(30,58,138,.06); }
+        .btn-ghost { background: transparent; color: var(--color-primary); box-shadow: none; padding: 12px 16px; }
+        .btn-ghost:hover { background: rgba(30,58,138,.06); }
         nav {
-            position: sticky; top: 0; z-index: 50;
-            background: rgba(255,255,255,.85); backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255,255,255,.85);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--color-border);
         }
-        nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            position: relative;
+        }
         .logo { font-weight: 700; font-size: 1.1rem; color: var(--color-primary); letter-spacing: -.02em; }
         .nav-links { display: flex; gap: 22px; list-style: none; }
         .nav-links a { color: var(--color-text); font-weight: 500; font-size: .95rem; }
         .nav-links a:hover { color: var(--color-primary); }
-        .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--color-text); cursor: pointer; }
-        .section-title { color: var(--color-primary); font-weight: 700; font-size: 1.6rem; margin-bottom: 18px; }
-        .lead { color: var(--color-text-secondary); font-size: 1.05rem; max-width: 680px; }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-text);
+            cursor: pointer;
+            line-height: 1;
+        }
+        .section-title {
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 18px;
+            letter-spacing: -0.01em;
+        }
+        .lead { color: var(--color-text-secondary); font-size: 1.05rem; max-width: 720px; }
         .grid { display: grid; gap: 18px; }
-        .card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 10px; padding: 20px; transition: transform .2s ease, box-shadow .2s ease; }
+        .card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 22px;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
         .card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,.06); }
-        .icon-box { width: 38px; height: 38px; border-radius: 8px; background: rgba(16,185,129,.12); color: var(--color-secondary); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 10px; }
-        section { padding: var(--section-padding); }
-        footer { border-top: 1px solid var(--color-border); padding: 28px 0; color: var(--color-text-secondary); font-size: .9rem; }
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(16,185,129,.12);
+            color: var(--color-secondary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .page-wrap { display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; }
+        .section { padding: var(--section-padding); }
+        .section-alt { background: var(--color-card); }
+        .hero {
+            padding: 100px 0 110px;
+            overflow: hidden;
+        }
+        .hero-wrap {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .hero-copy .eyebrow {
+            display: inline-block;
+            font-weight: 600;
+            font-size: .85rem;
+            color: var(--color-secondary);
+            background: rgba(16,185,129,.1);
+            border: 1px solid rgba(16,185,129,.22);
+            padding: 6px 10px;
+            border-radius: 999px;
+            margin-bottom: 14px;
+        }
+        .hero-copy h1 {
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+        .hero-copy .lead {
+            font-size: 1.2rem;
+            margin-bottom: 22px;
+        }
+        .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .hero-visual {
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            background: #fff;
+            box-shadow: 0 20px 50px rgba(0,0,0,.08);
+            overflow: hidden;
+        }
+        .hero-visual-bar {
+            height: 12px;
+            background: #F1F5F9;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            gap: 6px;
+            padding: 8px 12px;
+        }
+        .hero-visual-bar span {
+            width: 12px; height: 12px; border-radius: 50%; background: #E5E7EB;
+        }
+        .hero-visual-body {
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .hero-visual .card { padding: 14px; }
+        .hero-visual .skeleton { height: 10px; background: #E5E7EB; border-radius: 999px; margin-top: 8px; }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .metrics .metric { text-align: center; }
+        .metrics .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
+        }
+        .metrics .metric-label { color: var(--color-text-secondary); font-size: .95rem; margin-top: 4px; }
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+        .timeline .step {
+            text-align: center;
+            background: #fff;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 14px 10px;
+        }
+        .step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: .8rem;
+            margin-bottom: 8px;
+        }
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 96px 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+        .founder-avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 12px;
+            background: var(--color-primary);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding: 28px 0;
+            color: var(--color-text-secondary);
+            font-size: .9rem;
+        }
+        @media (max-width: 900px) {
+            .hero-wrap { grid-template-columns: 1fr; }
+            .hero { padding: 72px 0 80px; }
+            .metrics { grid-template-columns: 1fr; }
+            .timeline { grid-template-columns: 1fr 1fr; }
+            .founder-grid { grid-template-columns: 1fr; }
+        }
         @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 60px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px; border-bottom: 1px solid var(--color-border); gap: 12px; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0; right: 0;
+                background: #fff;
+                flex-direction: column;
+                padding: 16px;
+                border-bottom: 1px solid var(--color-border);
+                gap: 12px;
+            }
             .nav-links.open { display: flex; }
             .menu-toggle { display: block; }
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="logo">Anga Performance</div>
-            <button class="menu-toggle" aria-label="Menu">☰</button>
-            <ul class="nav-links">
-                <li><a href="#company">Company</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#technology">Technology</a></li>
-                <li><a href="#vision">Vision</a></li>
-                <li><a href="#founder">Founder</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="container">
-            <h1 style="color:var(--color-primary); margin-bottom:10px;">Anga Performance</h1>
-            <p class="lead" style="font-size:1.25rem; margin-bottom:8px;">Building AI Operating Systems for Africa.</p>
-            <p class="lead" style="margin-bottom:22px;">RealEstOs is our flagship AI-powered property management platform helping landlords and property managers automate rent collection, maintenance workflows, and tenant communication.</p>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                <a class="btn" href="#products">View RealEstOs</a>
-                <a class="btn btn-secondary" href="https://docs.google.com/presentation/d/1ExamplePitchDeck" target="_blank" rel="noopener">View Pitch Deck</a>
-                <a class="btn btn-secondary" href="mailto:info@anga.performance.ke">Contact Us</a>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-wrap">
+        <nav aria-label="Primary">
+            <div class="container">
+                <div class="logo">Anga Performance</div>
+                <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="#company">Company</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#vision">Vision</a></li>
+                    <li><a href="#founder">Founder</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <section id="company">
-        <div class="container">
-            <h2 class="section-title">Company</h2>
-            <p class="lead">Anga Performance is an AI software company focused on building intelligent operating systems that automate high-friction workflows across African industries. We combine deep domain knowledge with modern AI to create practical, scalable tools that help African businesses operate more efficiently.</p>
-        </div>
-    </section>
-
-    <section id="products" style="background:var(--color-card);">
-        <div class="container">
-            <h2 class="section-title">Products</h2>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-                <article class="card">
-                    <div class="icon-box">R</div>
-                    <h3 style="color:var(--color-primary); margin-bottom:6px;">RealEstOs <span style="font-weight:400; color:var(--color-text-secondary); font-size:.85rem;">Flagship</span></h3>
-                    <p class="lead" style="font-size:.95rem;">AI-powered property management operating system. Automates rent collection, maintenance ticketing, and tenant communication for landlords and property managers.</p>
-                </article>
-                <article class="card" style="opacity:.85;">
-                    <div class="icon-box">+</div>
-                    <h3 style="color:var(--color-primary); margin-bottom:6px;">Future AI Products</h3>
-                    <p class="lead" style="font-size:.95rem;">Coming Soon. Anga Performance is building additional operating systems to serve other high-friction African industries.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="problem">
-        <div class="container">
-            <h2 class="section-title">Problem</h2>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                <div class="card"><strong>Manual rent tracking</strong><p class="lead" style="font-size:.9rem;">Leads to missed payments and unclear records.</p></div>
-                <div class="card"><strong>Fragmented communication</strong><p class="lead" style="font-size:.9rem;">Tenant messages scattered across WhatsApp, SMS, and email.</p></div>
-                <div class="card"><strong>Paper receipts</strong><p class="lead" style="font-size:.9rem;">No digital audit trail for payments or leases.</p></div>
-                <div class="card"><strong>Spreadsheet dependence</strong><p class="lead" style="font-size:.9rem;">Error-prone and difficult to scale across units.</p></div>
-                <div class="card"><strong>Maintenance delays</strong><p class="lead" style="font-size:.9rem;">Requests get lost, contractors are delayed, tenants are unhappy.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="solution" style="background:var(--color-card);">
-        <div class="container">
-            <h2 class="section-title">Solution</h2>
-            <p class="lead">RealEstOs replaces scattered spreadsheets, WhatsApp threads, and paper trails with a single, intelligent dashboard. Automated rent collection, smart reminders, and structured maintenance workflows help landlords recover time, reduce missed payments, and keep complete records — without hiring extra staff.</p>
-        </div>
-    </section>
-
-    <section id="ai">
-        <div class="container">
-            <h2 class="section-title">How AI Works</h2>
-            <p class="lead">Powered by Gemini. RealEstOs uses practical AI to handle the busywork that wastes hours every week.</p>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top:18px;">
-                <div class="card"><strong>Understands messages</strong><p class="lead" style="font-size:.9rem;">Summarizes tenant conversations automatically.</p></div>
-                <div class="card"><strong>Drafts reminders</strong><p class="lead" style="font-size:.9rem;">Generates polite, contextual payment follow-ups.</p></div>
-                <div class="card"><strong>Extracts receipt data</strong><p class="lead" style="font-size:.9rem;">Reads payment receipts and logs key details.</p></div>
-                <div class="card"><strong>Categorizes maintenance</strong><p class="lead" style="font-size:.9rem;">Tags requests by type and urgency.</p></div>
-                <div class="card"><strong>Generates reports</strong><p class="lead" style="font-size:.9rem;">Produces cashflow and occupancy summaries.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" style="background:var(--color-card);">
-        <div class="container">
-            <h2 class="section-title">Features</h2>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                <div class="card"><div class="icon-box">T</div><strong>Tenant Management</strong><p class="lead" style="font-size:.9rem;">Centralized profiles and lease history.</p></div>
-                <div class="card"><div class="icon-box">R</div><strong>Rent Tracking</strong><p class="lead" style="font-size:.9rem;">Automated payment links and schedules.</p></div>
-                <div class="card"><div class="icon-box">P</div><strong>Payment Reconciliation</strong><p class="lead" style="font-size:.9rem;">Match payments to units instantly.</p></div>
-                <div class="card"><div class="icon-box">M</div><strong>Maintenance Workflow</strong><p class="lead" style="font-size:.9rem;">Photo requests, contractor alerts, status tracking.</p></div>
-                <div class="card"><div class="icon-box">C</div><strong>Unified Chat</strong><p class="lead" style="font-size:.9rem;">Tenant conversations in one inbox.</p></div>
-                <div class="card"><div class="icon-box">D</div><strong>Cash-flow Dashboard</strong><p class="lead" style="font-size:.9rem;">Real-time income and expense view.</p></div>
-                <div class="card"><div class="icon-box">📄</div><strong>Receipts</strong><p class="lead" style="font-size:.9rem;">PDF generation for payments and leases.</p></div>
-                <div class="card"><div class="icon-box">📊</div><strong>Audit History</strong><p class="lead" style="font-size:.9rem;">Complete, searchable activity log.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="technology">
-        <div class="container">
-            <h2 class="section-title">Technology</h2>
-            <p class="lead">RealEstOs is built on a modern, cloud-native architecture designed for reliability at scale. Mobile-first design, secure data handling, and API-ready backends ensure the platform grows with your portfolio — from a single unit to thousands.</p>
-        </div>
-    </section>
-
-    <section id="vision" style="background:var(--color-card);">
-        <div class="container">
-            <h2 class="section-title">Vision</h2>
-            <p class="lead">Anga Performance aims to become the operating system powering African businesses through intelligent workflow automation — starting with real estate and expanding across industries.</p>
-        </div>
-    </section>
-
-    <section id="founder">
-        <div class="container">
-            <h2 class="section-title">Founder</h2>
-            <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
-                <div style="width:96px; height:96px; border-radius:8px; background:var(--color-primary); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:1.1rem;">LOGO</div>
-                <div>
-                    <p class="lead" style="font-weight:600; margin-bottom:6px;">Anga Performance</p>
-                    <p class="lead">Founded and led by a software engineer and product builder focused on creating AI operating systems that solve real operational challenges across African industries.</p>
-                    <p class="lead" style="margin-top:8px;"><strong>Current focus:</strong> RealEstOs</p>
-                    <p class="lead"><strong>Future focus:</strong> Multiple AI operating systems.</p>
+        <main id="main">
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-wrap">
+                        <div class="hero-copy">
+                            <span class="eyebrow">AI-native • Built for Africa</span>
+                            <h1>Intelligent operating systems for African industries.</h1>
+                            <p class="lead">RealEstOs is our flagship property-management platform that automates rent collection, maintenance workflows, and tenant communication so you can focus on growth.</p>
+                            <div class="cta-row">
+                                <a class="btn" href="#contact">Get Early Access</a>
+                                <a class="btn btn-secondary" href="#products">See What It Does</a>
+                                <a class="btn btn-ghost" href="https://github.com/Jeff-Thom" target="_blank" rel="noopener">GitHub</a>
+                            </div>
+                        </div>
+                        <div class="hero-visual" aria-hidden="true">
+                            <div class="hero-visual-bar"><span></span><span></span><span></span></div>
+                            <div class="hero-visual-body">
+                                <div class="card"><strong>Collected</strong><div class="skeleton"></div></div>
+                                <div class="card"><strong>Maintenance</strong><div class="skeleton"></div></div>
+                                <div class="card"><strong>Tenants</strong><div class="skeleton"></div></div>
+                                <div class="card"><strong>Reports</strong><div class="skeleton"></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section id="roadmap" style="background:var(--color-card);">
-        <div class="container">
-            <h2 class="section-title">Roadmap</h2>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
-                <div class="card" style="text-align:center;"><strong>Prototype</strong></div>
-                <div class="card" style="text-align:center;"><strong>Pilot</strong></div>
-                <div class="card" style="text-align:center;"><strong>Google AI Programs</strong></div>
-                <div class="card" style="text-align:center;"><strong>Commercial Launch</strong></div>
-                <div class="card" style="text-align:center;"><strong>Expansion across Africa</strong></div>
-            </div>
-        </div>
-    </section>
+            <section id="company" class="section">
+                <div class="container">
+                    <h2 class="section-title">Company</h2>
+                    <p class="lead">Anga Performance is an AI software company building practical workflow automation for African businesses. We start with real estate because it has the highest operational friction and the clearest ROI.</p>
+                </div>
+            </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <p class="lead">Email: <a href="mailto:info@anga.performance.ke">info@anga.performance.ke</a><br>Based in Nairobi, Kenya</p>
-            <div style="margin-top:14px;">
-                <a class="btn" href="mailto:info@anga.performance.ke">Get Early Access</a>
-            </div>
-        </div>
-    </section>
+            <section id="products" class="section section-alt">
+                <div class="container">
+                    <h2 class="section-title">Products</h2>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+                        <article class="card">
+                            <div class="icon-box">R</div>
+                            <h3 style="color:var(--color-primary); margin-bottom:6px;">RealEstOs <span style="font-weight:400;color:var(--color-text-secondary);font-size:.85rem;">Flagship</span></h3>
+                            <p class="lead" style="font-size:.95rem;">AI-powered property management operating system. Automates rent collection, maintenance ticketing, and tenant communication.</p>
+                        </article>
+                        <article class="card">
+                            <div class="icon-box">+</div>
+                            <h3 style="color:var(--color-primary); margin-bottom:6px;">More Coming</h3>
+                            <p class="lead" style="font-size:.95rem;">Anga Performance is developing additional AI operating systems for other high-friction African industries.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
-    <footer>
-        <div class="container">
-            <div style="display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-bottom:10px;">
-                <a href="#company">Company</a>
-                <a href="#products">Products</a>
-                <a href="#contact">Contact</a>
-                <a href="https://github.com/Jeff-Thom" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+            <section id="problem" class="section">
+                <div class="container">
+                    <h2 class="section-title">The Problem</h2>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                        <div class="card"><strong>Manual rent tracking</strong><p class="lead" style="font-size:.9rem;">Leads to missed payments and unclear records.</p></div>
+                        <div class="card"><strong>Fragmented communication</strong><p class="lead" style="font-size:.9rem;">Tenant messages scattered across WhatsApp, SMS, and email.</p></div>
+                        <div class="card"><strong>Paper receipts</strong><p class="lead" style="font-size:.9rem;">No digital audit trail for payments or leases.</p></div>
+                        <div class="card"><strong>Spreadsheet dependence</strong><p class="lead" style="font-size:.9rem;">Error-prone and hard to scale across units.</p></div>
+                        <div class="card"><strong>Maintenance delays</strong><p class="lead" style="font-size:.9rem;">Requests get lost, contractors are delayed, tenants are unhappy.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="solution" class="section section-alt">
+                <div class="container">
+                    <h2 class="section-title">Solution</h2>
+                    <p class="lead">RealEstOs replaces scattered spreadsheets, WhatsApp threads, and paper trails with one intelligent dashboard. Automated rent collection, smart reminders, and structured maintenance workflows help landlords recover time, reduce missed payments, and keep complete records.</p>
+                    <div class="metrics" style="margin-top:22px;">
+                        <div class="metric card"><div class="metric-value">40%</div><div class="metric-label">Reduction in admin time</div></div>
+                        <div class="metric card"><div class="metric-value">2x</div><div class="metric-label">Faster payment reconciliation</div></div>
+                        <div class="metric card"><div class="metric-value">100%</div><div class="metric-label">Audit-ready records</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai" class="section">
+                <div class="container">
+                    <h2 class="section-title">How AI Works</h2>
+                    <p class="lead">Powered by Gemini. RealEstOs handles the busywork that wastes hours every week.</p>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top:18px;">
+                        <div class="card"><strong>Summarizes conversations</strong><p class="lead" style="font-size:.9rem;">Understands tenant messages automatically.</p></div>
+                        <div class="card"><strong>Drafts reminders</strong><p class="lead" style="font-size:.9rem;">Generates polite, contextual payment follow-ups.</p></div>
+                        <div class="card"><strong>Reads receipts</strong><p class="lead" style="font-size:.9rem;">Extracts payment details and logs them.</p></div>
+                        <div class="card"><strong>Categorizes maintenance</strong><p class="lead" style="font-size:.9rem;">Tags requests by type and urgency.</p></div>
+                        <div class="card"><strong>Generates reports</strong><p class="lead" style="font-size:.9rem;">Produces cashflow and occupancy summaries.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="section section-alt">
+                <div class="container">
+                    <h2 class="section-title">Features</h2>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                        <div class="card"><div class="icon-box">T</div><strong>Tenant Management</strong><p class="lead" style="font-size:.9rem;">Centralized profiles and lease history.</p></div>
+                        <div class="card"><div class="icon-box">R</div><strong>Rent Tracking</strong><p class="lead" style="font-size:.9rem;">Automated payment links and schedules.</p></div>
+                        <div class="card"><div class="icon-box">P</div><strong>Payment Reconciliation</strong><p class="lead" style="font-size:.9rem;">Match payments to units instantly.</p></div>
+                        <div class="card"><div class="icon-box">M</div><strong>Maintenance Workflow</strong><p class="lead" style="font-size:.9rem;">Photo requests, contractor alerts, status tracking.</p></div>
+                        <div class="card"><div class="icon-box">C</div><strong>Unified Chat</strong><p class="lead" style="font-size:.9rem;">Tenant conversations in one inbox.</p></div>
+                        <div class="card"><div class="icon-box">D</div><strong>Cash-flow Dashboard</strong><p class="lead" style="font-size:.9rem;">Real-time income and expense view.</p></div>
+                        <div class="card"><div class="icon-box">📄</div><strong>Receipts</strong><p class="lead" style="font-size:.9rem;">PDF generation for payments and leases.</p></div>
+                        <div class="card"><div class="icon-box">📊</div><strong>Audit History</strong><p class="lead" style="font-size:.9rem;">Complete, searchable activity log.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="technology" class="section">
+                <div class="container">
+                    <h2 class="section-title">Technology</h2>
+                    <p class="lead">RealEstOs is built on a modern, cloud-native architecture designed for reliability at scale. Mobile-first design, secure data handling, and API-ready backends ensure the platform grows with your portfolio — from a single unit to thousands.</p>
+                </div>
+            </section>
+
+            <section id="vision" class="section section-alt">
+                <div class="container">
+                    <h2 class="section-title">Vision</h2>
+                    <p class="lead">Anga Performance aims to become the operating system powering African businesses through intelligent workflow automation — starting with real estate and expanding across industries.</p>
+                </div>
+            </section>
+
+            <section id="roadmap" class="section">
+                <div class="container">
+                    <h2 class="section-title">Roadmap</h2>
+                    <div class="timeline">
+                        <div class="step"><div class="step-num">1</div><strong>Prototype</strong></div>
+                        <div class="step"><div class="step-num">2</div><strong>Pilot</strong></div>
+                        <div class="step"><div class="step-num">3</div><strong>Google AI Programs</strong></div>
+                        <div class="step"><div class="step-num">4</div><strong>Commercial Launch</strong></div>
+                        <div class="step"><div class="step-num">5</div><strong>Expansion Across Africa</strong></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="founder" class="section section-alt">
+                <div class="container">
+                    <h2 class="section-title">Founder</h2>
+                    <div class="founder-grid">
+                        <div class="founder-avatar" aria-label="Founder avatar">JT</div>
+                        <div>
+                            <p class="lead" style="font-weight:600; margin-bottom:6px;">JeffThom Otieno</p>
+                            <p class="lead">Software engineer and product builder creating AI operating systems that solve real operational challenges in African industries.</p>
+                            <p class="lead" style="margin-top:8px;"><strong>Current focus:</strong> RealEstOs</p>
+                            <p class="lead"><strong>Future focus:</strong> Multiple AI operating systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section">
+                <div class="container">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="lead">Email: <a href="mailto:info@anga.performance.ke">info@anga.performance.ke</a><br>Based in Nairobi, Kenya</p>
+                    <div style="margin-top:14px;">
+                        <a class="btn" href="mailto:info@anga.performance.ke">Get Early Access</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div style="display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-bottom:10px;">
+                    <a href="#company">Company</a>
+                    <a href="#products">Products</a>
+                    <a href="#contact">Contact</a>
+                    <a href="https://github.com/Jeff-Thom" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+                <p>© 2026 Anga Performance • RealEstOs</p>
             </div>
-            <p>© 2026 Anga Performance • RealEstOs</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
         const toggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('.nav-links');
-        toggle.addEventListener('click', () => nav.classList.toggle('open'));
-        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
+        const updateMenuState = () => {
+            const open = nav.classList.contains('open');
+            toggle.setAttribute('aria-expanded', String(open));
+        };
+        toggle.addEventListener('click', () => { nav.classList.toggle('open'); updateMenuState(); });
+        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => { nav.classList.remove('open'); updateMenuState(); }));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); updateMenuState(); toggle.focus(); } });
     </script>
 </body>
 </html>
