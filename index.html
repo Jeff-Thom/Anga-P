@@ -6,6 +6,7 @@
     <title>Anga Performance - Intelligent Operating Systems</title>
     <meta name="description" content="Anga Performance builds AI operating systems for African industries. RealEstOs is our flagship AI-powered property management platform.">
     <meta name="theme-color" content="#1a3673">
+    <link rel="icon" type="image/png" href="anga-performance.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,6 +20,7 @@
                         'anga-green': '#10b981',
                         'anga-bg-green': '#ecfdf5',
                         'anga-text-gray': '#4b5563',
+                        'anga-cream': '#F9F6E7',
                     },
                             fontFamily: {
                                 sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
@@ -37,13 +39,26 @@
             position: fixed; left: 16px; top: 16px; width: auto; height: auto; padding: 10px 14px;
             background: #000; color: #fff; z-index: 100; border-radius: 6px;
         }
+        /* ---------- real logo asset (anga-performance.png) ---------- */
+        /* One asset, real pixels: 1664x928 with an opaque cream field
+           #F9F6E7. Every surface hosting it is set to exactly that color so
+           the field is pixel-identical to its container. On this white page
+           the cream surfaces read as deliberate paper chips/tiles. */
+        .logo-crop{--ar:1.7931;--x:.3506;--y:.2235;--w:.5008;--h:.4538;position:relative;display:inline-block;overflow:hidden;height:40px;aspect-ratio:calc(var(--w)*var(--ar)/var(--h));flex:none;background:#F9F6E7;border:1px solid rgba(26,54,115,.08);border-radius:8px}
+        .logo-crop img{position:absolute;top:0;left:0;width:calc(100%/var(--w));max-width:none;height:auto;transform:translate(calc(-1*var(--x)*100%),calc(-1*var(--y)*100%))}
+        .logo-full{display:block;width:min(100%,300px);margin:0 auto}
+        .brand-card{background:#F9F6E7;border:1px solid rgba(26,54,115,.1);border-radius:16px;padding:30px;width:360px;max-width:100%;transform:rotate(2deg);box-shadow:0 26px 60px rgba(26,54,115,.16);text-align:center;transition:transform .35s}
+        .brand-card:hover{transform:rotate(0)}
+        .foot-logo-badge{display:inline-flex;background:#F9F6E7;border:1px solid rgba(26,54,115,.08);border-radius:10px;padding:8px 12px;box-shadow:0 10px 30px rgba(26,54,115,.14)}
+        .foot-logo-badge img{display:block;height:48px;width:auto}
     </style>
 </head>
 <body class="bg-white text-anga-blue antialiased">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="w-full py-6 px-6 lg:px-16 flex items-center justify-between border-b border-gray-50">
-    <div class="flex items-center">
+    <div class="flex items-center gap-3">
+        <span class="logo-crop" aria-hidden="true"><img src="anga-performance.png" alt=""></span>
         <span class="text-xl font-bold tracking-tight text-anga-blue">Anga Performance</span>
     </div>
     <nav class="hidden md:flex items-center space-x-8" aria-label="Primary">
@@ -110,8 +125,15 @@
     <!-- Products -->
     <section id="products" class="border-t border-gray-50 bg-gray-50/60">
         <div class="max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24">
-            <h2 class="text-3xl lg:text-4xl font-extrabold text-anga-blue tracking-tight">Products</h2>
-            <p class="mt-3 text-anga-text-gray max-w-2xl">Flagship platform and future operating systems.</p>
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
+                <div class="lg:max-w-xl">
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-anga-blue tracking-tight">Products</h2>
+                    <p class="mt-3 text-anga-text-gray max-w-2xl">Flagship platform and future operating systems.</p>
+                </div>
+                <div class="brand-card shrink-0 self-center lg:self-auto" aria-label="Anga Performance logo">
+                    <img class="logo-full" src="anga-performance.png" alt="Anga Performance">
+                </div>
+            </div>
             <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-md transition">
                     <div class="h-10 w-10 rounded-lg bg-anga-bg-green text-anga-green flex items-center justify-center font-bold mb-4">R</div>
@@ -259,7 +281,10 @@
 
 <footer class="border-t border-gray-50 bg-white">
     <div class="max-w-7xl mx-auto px-6 lg:px-16 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div class="text-sm text-gray-500">© 2026 Anga Performance • RealEstOs</div>
+        <div class="flex items-center gap-4">
+            <span class="foot-logo-badge"><img src="anga-performance.png" alt="Anga Performance"></span>
+            <span class="text-sm text-gray-500">© 2026 Anga Performance • RealEstOs</span>
+        </div>
         <div class="flex items-center gap-6 text-sm">
             <a class="text-anga-text-gray hover:text-anga-blue" href="#company">Company</a>
             <a class="text-anga-text-gray hover:text-anga-blue" href="#products">Products</a>
